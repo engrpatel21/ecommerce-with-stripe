@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import Products from "./Components/Products";
 import Navbar from "./Components/Navbar";
+import Cart from "./Components/Cart";
 import {commerce} from './lib/commerce'
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState(null);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
@@ -14,6 +15,7 @@ const App = () => {
 
   const fetchCart = async () => {
     const cart = await commerce.cart.retrieve()
+    console.log(cart)
     setCart(cart)
   }
 
@@ -29,8 +31,9 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar totalItems={cart ? cart.total_items : 0 }/>
       <Products products={products} onAddToCart={handleAddToCart}/>
+      <Cart cart={cart}/>
     </div>
   );
 };
