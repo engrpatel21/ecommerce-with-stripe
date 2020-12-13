@@ -12,26 +12,24 @@ import useStyles from '../Styles/ProudctCardStyles'
 
 
 
-const ProductCard = (props) => {
-  const { name, description, price, image } = props
+const ProductCard = ({name, description, media, price, onAddToCart}) => {
+
   const classes = useStyles()
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media}  image={image} title={name} />
+      <CardMedia className={classes.media}  image={media.source} title={name} />
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
             {name}
           </Typography>
           <Typography variant="h5" gutterBottom>
-            {price}
+            {price.formatted_with_symbol}
           </Typography>
         </div>
-        <Typography variant="body2" color="textSecondary">
-          {description}
-        </Typography>
+        <Typography dangerouslySetInnerHTML={{ __html: description}} variant="body2" color="textSecondary"/>
         <CardActions disableSpacing className={classes.cardActions}>
-          <IconButton aria-label="Add To Cart">
+          <IconButton aria-label="Add To Cart" onClick={onAddToCart}>
             <AddShoppingCartIcon />
           </IconButton>
         </CardActions>
