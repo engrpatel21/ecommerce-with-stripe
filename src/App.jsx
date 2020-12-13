@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
+import Products from './Components/Products'
 
 const App = () => {
-  return ( <h1>App</h1> );
+  return ( <Products/> );
 }
  
 
