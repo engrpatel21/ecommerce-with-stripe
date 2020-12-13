@@ -1,9 +1,14 @@
-import React from 'react';
-import Products from './Components/Products'
+import React from "react";
+import Products from "./Components/Products";
+import Navbar from "./Components/Navbar";
 
 const App = () => {
-  return ( <Products/> );
-}
- 
+  return (
+    <div>
+      <Navbar />
+      <Products />
+    </div>
+  );
+};
 
 export default App;
